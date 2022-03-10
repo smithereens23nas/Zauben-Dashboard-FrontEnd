@@ -7,27 +7,27 @@ import Nav from "./components/NavBar";
 import Plant from "./components/Plant";
 import Login from "./pages/Login";
 import PlantListPage from "./pages/PlantListPage";
-import PlantShowPage from "./pages/PlantShowPage";
+import PlantLocationList from "./pages/LocationListPage";
 import Performance from "./pages/Performance";
-import AirQuality from "./pages/AirQuality";
-import Temperature from "./pages/Temperature";
-import WaterTank from "./pages/WaterTank";
-import Humidity from "./pages/Humidity";
+import Pressure from "./pages/Pressure";
+import Soil1 from "./pages/Soil-1";
+import Soil2 from "./pages/Soil-2";
+import Soil3 from "./pages/Soil-3";
 
 function App() {
+  const URL = "https://localhost:8080/";
   return (
     <div className="App">
       <Nav />
       <Routes>
         <Route exact path="/" element={<Login URL={URL} />} />
         <Route path="/locations" element={<PlantLocationList URL={URL} />} />
-        <Route path="/" element={<PlantListPage URL={URL} />} />
-        <Route path="/plant" element={<PlantShowPage URL={URL} />} />
+        <Route path="/plants" element={<PlantListPage URL={URL} />} />
         <Route path="/performance" element={<Performance URL={URL} />} />
-        <Route path="/airquality" element={<AirQuality URL={URL} />} />
-        <Route path="/temperature" element={<Temperature URL={URL} />} />
-        <Route path="/water" element={<WaterTank URL={URL} />} />
-        <Route path="/humidity" element={<Humidity URL={URL} />} />
+        <Route path="/pressure" element={<Pressure URL={URL} />} />
+        <Route path="/soil-1" element={<Soil1 URL={URL} />} />
+        <Route path="/soil-2" element={<Soil2 URL={URL} />} />
+        <Route path="/soil-3" element={<Soil3 URL={URL} />} />
       </Routes>
       <Footer />
     </div>
