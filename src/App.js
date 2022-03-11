@@ -5,22 +5,24 @@ import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
 import Nav from "./components/NavBar";
 import Plant from "./components/Plant";
+import Register from "./pages/Register"
 import Login from "./pages/Login";
 import PlantListPage from "./pages/PlantListPage";
 import PlantLocationList from "./pages/LocationListPage";
 import Performance from "./pages/Performance";
 import Pressure from "./pages/Pressure";
-import Soil1 from "./pages/Soil-1";
-import Soil2 from "./pages/Soil-2";
-import Soil3 from "./pages/Soil-3";
+import Soil1 from "./pages/Soil1";
+import Soil2 from "./pages/Soil2";
+import Soil3 from "./pages/Soil3";
 
 function App() {
-  const URL = "https://localhost:8080/";
+  const URL = "http://localhost:8080/";
   return (
     <div className="App">
       <Nav />
       <Routes>
-        <Route exact path="/" element={<Login URL={URL} />} />
+      <Route exact path='/login' element={< Login URL={URL} />}></Route>
+        <Route path="/register" element={<Register URL={URL} />} />
         <Route path="/locations" element={<PlantLocationList URL={URL} />} />
         <Route path="/plants" element={<PlantListPage URL={URL} />} />
         <Route path="/performance" element={<Performance URL={URL} />} />
