@@ -1,8 +1,10 @@
 import React from 'react'
 
 const Soil1 = () => {
+  
   return (
-    <div>Soil1</div>
+    <h1>Soil1</h1>
+    
   )
 }
 

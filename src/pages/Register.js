@@ -1,102 +1,108 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+
 const Register = () => {
-  const [user, setUser] = useState({
+  const [auth, setAuth] = useState(false);
+  const [inputs, setInputs] = useState({
     first_name: "",
     last_name: "",
     email: "",
     username: "",
     password: "",
   });
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setUser((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
+
+  const { first_name, last_name, email, username, password } = inputs;
+
+  const onChange = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  //register function
-  const egister = async() => {
-    const { first_name, last_name, email, username, password } = user;
-    console.log(user)
-    if (first_name && last_name && email && username && password) {
-      await axios.post("http://localhost:8080/api/users/register", user)
-        .then((res) => console.log(res));
-    } else {
-      alert("invalid input");
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+
+    try {
+      const body = { first_name, last_name, email, username, password };
+      console.log(body);
+      const response = await fetch(
+        "http://localhost:8080/auth/users/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
+      console.log(response);
+      const parseResponse = await response.json();
+
+      if (parseResponse.token) {
+        localStorage.setItem("token", parseResponse.token);
+
+        setAuth(true);
+        toast.success(
+          `Welcome to the club, ${parseResponse.username
+            .charAt(0)
+            .toUpperCase()}${parseResponse.username.substring(1)}!`
+        );
+      } else {
+        setAuth(false);
+        toast.error(parseResponse);
+      }
+    } catch (err) {
+      console.error(err.message);
     }
-    return (
-      <>
-        <div class="flex flex-col max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
-          <div class="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl dark:text-white">
-            Create a new account
-          </div>
-          <span class="justify-center text-sm text-center text-gray-500 flex-items-center dark:text-gray-400">
-            Already have an account ?
-            <a
-              href="#"
-              target="_blank"
-              class="text-sm text-blue-500 underline hover:text-blue-700"
-            >
-              Sign in
-            </a>
-          </span>
-          <div class="p-6 mt-8">
-            <form action="#">
-              <div class="flex flex-col mb-2">
-                <div class=" relative ">
-                  <input
-                    type="text"
-                    id="create-account-pseudo"
-                    class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                    id="username"
-                    value={user.first_name}
-                    onChange={handleChange}
-                    placeholder="FullName"
-                  />
-                </div>
-              </div>
-              <div class="flex gap-4 mb-2">
-                <div class=" relative ">
-                  <input
-                    type="text"
-                    id="create-account-first-name"
-                    class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                    id="email"
-                    value={user.email}
-                    onChange={handleChange}
-                    placeholder="Email"
-                  />
-                </div>
-              </div>
-              <div class="flex flex-col mb-2">
-                <div class=" relative ">
-                  <input
-                    type="password"
-                    id="create-account-email"
-                    class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                    id="password"
-                    value={user.password}
-                    onChange={handleChange}
-                    placeholder="password"
-                  />
-                </div>
-              </div>
-              <div class="flex w-full my-4">
-                <button
-                  type="submit"
-                  class="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
-                  onClick={() => egister()}
-                >
-                  Register
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </>
-    );
   };
+
+  return (
+    <Fragment>
+      <h1 className="text-center my-5">Register</h1>
+      <form onSubmit={onSubmitForm}>
+        <input
+          className="form-control my-3"
+          type="text"
+          name="first_name"
+          placeholder="first name"
+          value={first_name}
+          onChange={(e) => onChange(e)}
+        />
+        <input
+          className="form-control my-3"
+          type="text"
+          name="last_name"
+          placeholder="last name"
+          value={last_name}
+          onChange={(e) => onChange(e)}
+        />
+        <input
+          className="form-control my-3"
+          type="email"
+          name="email"
+          placeholder="Example@example.com"
+          value={email}
+          onChange={(e) => onChange(e)}
+        />
+        <input
+          className="form-control my-3"
+          type="text"
+          name="username"
+          placeholder="Select Username"
+          value={username}
+          onChange={(e) => onChange(e)}
+        />
+        <input
+          className="form-control my-3"
+          type="password"
+          name="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => onChange(e)}
+        />
+        <Link to="/locations">
+          <button className="btn btn-success btn-block ">Submit</button>
+        </Link>
+      </form>
+      <Link to="/login">Login</Link>
+    </Fragment>
+  );
 };
 export default Register;
