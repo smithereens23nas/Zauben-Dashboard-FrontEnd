@@ -14,16 +14,16 @@ import Login from "./pages/Login";
 import PlantListPage from "./pages/PlantListPage";
 import PlantLocationList from "./pages/LocationListPage";
 import Performance from "./pages/Performance";
-import Pressure from "./pages/Pressure";
-import Soil1 from "./pages/Soil1";
-import Soil2 from "./pages/Soil2";
-import Soil3 from "./pages/Soil3";
-import DoughnutChart from "./components/Metrics"
-
+import PeformanceDashboard from "./pages/PerformanceDashboard"
+import DoughnutChart from "./components/DonutGraph"
+import {Chart, ArcElement} from 'chart.js'
 
 
 function App() {
   const URL = "http://localhost:8080/";
+
+  Chart.register(ArcElement) 
+
 
   const [error, setError] = useState();
   const [userCredentials, setUserCredentials] = useState({
@@ -40,8 +40,7 @@ function App() {
         token = "";
       }
 
-      const tokenResponse = await axios
-        .post("http://localhost:8080/auth/users/tokenIsValid", null, {
+      const tokenResponse = await axios.post("http://localhost:8080/auth/users/tokenIsValid", null, {
           headers: {
             "x-auth-token": token,
           },
@@ -51,8 +50,7 @@ function App() {
         });
 
       if (tokenResponse) {
-        const res = await axios
-          .get("http://localhost:8080/auth/users/tokenIsValid", {
+        const res = await axios.get("http://localhost:8080/auth/users/tokenIsValid", {
             headers: {
               "x-auth-token": token,
             },
@@ -70,14 +68,16 @@ function App() {
 
     checkLoggedIn();
   }, []);
+
+  
   return (
     <div className="App">
       <Nav />
       <Context.Provider value={{ userCredentials, setUserCredentials }}>
         
         <Routes>
-          <Route exact path="/login" element={<Login URL={URL} />}></Route>
-          <Route path="/performance" element={<DoughnutChart URL={URL}  />} />
+          <Route exact path="/login" element={<Login URL={URL} />} />
+          <Route path="/performance" element={<DoughnutChart />} />
           <Route path="/register" element={<Register URL={URL} />} />
           <Route
             path="/locations"
@@ -87,10 +87,7 @@ function App() {
           />
           <Route path="/plants" element={<PlantListPage URL={URL} />} />
           <Route path="/performance"  element={<Performance URL={URL} />} />
-          <Route path="/pressure" element={<Pressure URL={URL} />} />
-          <Route path="/soil-1" element={<Soil1 URL={URL} />} />
-          <Route path="/soil-2" element={<Soil2 URL={URL} />} />
-          <Route path="/soil-3" element={<Soil3 URL={URL} />} />
+
         </Routes>
       </Context.Provider>
       <Footer />
