@@ -13,16 +13,16 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import PlantListPage from "./pages/PlantListPage";
 import PlantLocationList from "./pages/LocationListPage";
-import Performance from "./pages/Performance";
+import Performance from "./pages/PerformanceShowPage";
 import PeformanceDashboard from "./pages/PerformanceDashboard"
 import DoughnutChart from "./components/DonutGraph"
-import {Chart, ArcElement} from 'chart.js'
+import {Chart, ArcElement, CategoryScale, LinearScale, PointElement, LineElement} from 'chart.js'
 
 
 function App() {
   const URL = "http://localhost:8080/";
 
-  Chart.register(ArcElement) 
+  Chart.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement) 
 
 
   const [error, setError] = useState();
@@ -77,7 +77,6 @@ function App() {
         
         <Routes>
           <Route exact path="/login" element={<Login URL={URL} />} />
-          <Route path="/performance" element={<DoughnutChart />} />
           <Route path="/register" element={<Register URL={URL} />} />
           <Route
             path="/locations"
@@ -90,7 +89,6 @@ function App() {
 
         </Routes>
       </Context.Provider>
-      <Footer />
     </div>
   );
 }

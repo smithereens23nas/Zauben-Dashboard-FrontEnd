@@ -7,7 +7,7 @@ function Locations(props) {
   //create function to make api call
   const getLocationsData = async () => {
     //make api call and get response
-    const response = await fetch(props.URL + "api/locations/all");
+    const response = await fetch(props.URL + "auth/locations/all");
     // turn response into javascript object
     const data = await response.json();
     // set the projects state to the data
