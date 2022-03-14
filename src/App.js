@@ -4,18 +4,18 @@ import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Context from "./Context";
-import Container from "./components/Container";
-import Dashboard from "./components/Dashboard";
-import Footer from "./components/Footer";
+// import Container from "./components/Container";
+// import Dashboard from "./components/Dashboard";
+// import Footer from "./components/Footer";
 import Nav from "./components/NavBar";
-import Plant from "./components/Plant";
+// import Plant from "./components/Plant";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import PlantListPage from "./pages/PlantListPage";
 import PlantLocationList from "./pages/LocationListPage";
 import Performance from "./pages/PerformanceShowPage";
 import PerformanceDashboard from "./pages/PerformanceDashboard"
-import DoughnutChart from "./components/DonutGraph"
+// import DoughnutChart from "./components/DonutGraph"
 import {Chart, ArcElement, CategoryScale, LinearScale, PointElement, LineElement} from 'chart.js'
 
 
