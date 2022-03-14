@@ -13,66 +13,17 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import PlantListPage from "./pages/PlantListPage";
 import PlantLocationList from "./pages/LocationListPage";
-import Performance from "./pages/Performance";
-import Pressure from "./pages/Pressure";
-import Soil1 from "./pages/Soil1";
-import Soil2 from "./pages/Soil2";
-import Soil3 from "./pages/Soil3";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
+import Performance from "./pages/PerformanceShowPage";
+import PeformanceDashboard from "./pages/PerformanceDashboard"
+import DoughnutChart from "./components/DonutGraph"
+import {Chart, ArcElement, CategoryScale, LinearScale, PointElement, LineElement} from 'chart.js'
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
 function App() {
   const URL = "http://localhost:8080/";
 
-  const [chartData, setChartData] = useState({
-    datasets: [],
-  });
+  Chart.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement) 
 
-  const [chartOptions, setChartOptions] = useState({});
-
-  useEffect(() => {
-    setChartData({
-      labels: ["model x", "sage", "top-competitor"],
-      datasets: [
-        {
-          label: "Top air quality plant walls",
-          data: [100, 25, 40],
-          borderColor: "rgb(53, 162, 235, 0.4)",
-          backgroundColor: "rgba(53, 162, 235, 0.4)",
-
-        },
-      ],
-    });
-    setChartOptions({
-      responsive: true, 
-      plugins: {
-        legend: {
-          position: "top"
-        },
-        title: {
-          display: true,
-          text: "Living Plant Wall Air Quality"
-        }
-      }
-    })
-  }, []);
 
   const [error, setError] = useState();
   const [userCredentials, setUserCredentials] = useState({
@@ -89,8 +40,7 @@ function App() {
         token = "";
       }
 
-      const tokenResponse = await axios
-        .post("http://localhost:8080/auth/users/tokenIsValid", null, {
+      const tokenResponse = await axios.post("http://localhost:8080/auth/users/tokenIsValid", null, {
           headers: {
             "x-auth-token": token,
           },
@@ -100,8 +50,7 @@ function App() {
         });
 
       if (tokenResponse) {
-        const res = await axios
-          .get("http://localhost:8080/auth/users/tokenIsValid", {
+        const res = await axios.get("http://localhost:8080/auth/users/tokenIsValid", {
             headers: {
               "x-auth-token": token,
             },
@@ -119,14 +68,15 @@ function App() {
 
     checkLoggedIn();
   }, []);
+
+  
   return (
     <div className="App">
       <Nav />
       <Context.Provider value={{ userCredentials, setUserCredentials }}>
         
         <Routes>
-          <Route exact path="/login" element={<Login URL={URL} />}></Route>
-          <Route path="/performance" element={<Bar options={chartOptions} data={chartData} />} />
+          <Route exact path="/login" element={<Login URL={URL} />} />
           <Route path="/register" element={<Register URL={URL} />} />
           <Route
             path="/locations"
@@ -135,14 +85,10 @@ function App() {
             }
           />
           <Route path="/plants" element={<PlantListPage URL={URL} />} />
-          <Route path="/performance"  element={<Performance URL={URL} options={chartOptions} data={chartData} />} />
-          <Route path="/pressure" element={<Pressure URL={URL} />} />
-          <Route path="/soil-1" element={<Soil1 URL={URL} />} />
-          <Route path="/soil-2" element={<Soil2 URL={URL} />} />
-          <Route path="/soil-3" element={<Soil3 URL={URL} />} />
+          <Route path="/performance"  element={<Performance URL={URL} />} />
+
         </Routes>
       </Context.Provider>
-      <Footer />
     </div>
   );
 }

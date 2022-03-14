@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+justify-content: center;
+align-items: center;
+
+}
+
+.line-chart {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding-bottom:75px;
+  padding-left: 50px;
+  width: 85vw;
+}
+
+/* .donut-chart canvas {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  outline: red solid 3px;
+} */
+
