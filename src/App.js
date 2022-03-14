@@ -20,7 +20,7 @@ import {Chart, ArcElement, CategoryScale, LinearScale, PointElement, LineElement
 
 
 function App() {
-  const URL = "http://localhost:8080/";
+  const URL = "https://zauben.herokuapp.com/";
 
   Chart.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement) 
 
