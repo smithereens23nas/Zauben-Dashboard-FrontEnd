@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+
 function Locations(props) {
   // create state to hold projects
   const [locations, setLocations] = useState(null);
@@ -7,7 +8,7 @@ function Locations(props) {
   //create function to make api call
   const getLocationsData = async () => {
     //make api call and get response
-    const response = await fetch(props.URL + "auth/locations/all");
+    const response = await fetch(props.URL + "locations/all");
     // turn response into javascript object
     const data = await response.json();
     // set the projects state to the data
@@ -21,7 +22,7 @@ function Locations(props) {
   // define a function that will return the JSX needed once we get the data
   const loaded = () => {
     return locations.map((location, index) => (
-      <div key={index}>
+      <div key={index} className="container">
         <p>{location.StreetAddress}</p>
         <p>{location.City}</p>
         <p>{location.State}</p>

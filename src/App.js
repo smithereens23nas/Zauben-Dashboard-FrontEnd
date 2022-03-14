@@ -14,7 +14,7 @@ import Login from "./pages/Login";
 import PlantListPage from "./pages/PlantListPage";
 import PlantLocationList from "./pages/LocationListPage";
 import Performance from "./pages/PerformanceShowPage";
-import PeformanceDashboard from "./pages/PerformanceDashboard"
+import PerformanceDashboard from "./pages/PerformanceDashboard"
 import DoughnutChart from "./components/DonutGraph"
 import {Chart, ArcElement, CategoryScale, LinearScale, PointElement, LineElement} from 'chart.js'
 
@@ -85,7 +85,8 @@ function App() {
             }
           />
           <Route path="/plants" element={<PlantListPage URL={URL} />} />
-          <Route path="/performance"  element={<Performance URL={URL} />} />
+          <Route path="/performance"  element={<PerformanceDashboard URL={URL} />} />
+          <Route path="/performance/:id"  element={<Performance URL={URL} />} />
 
         </Routes>
       </Context.Provider>
