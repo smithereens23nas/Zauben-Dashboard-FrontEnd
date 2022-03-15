@@ -56,7 +56,7 @@ const Register = () => {
   return (
     <Fragment>
       <h1 className="text-center my-5">Register</h1>
-      <form onSubmit={onSubmitForm}>
+      <form className="register" onSubmit={onSubmitForm}>
         <input
           className="form-control my-3"
           type="text"
@@ -98,10 +98,10 @@ const Register = () => {
           onChange={(e) => onChange(e)}
         />
         <Link to="/locations">
-          <button className="btn btn-success btn-block ">Submit</button>
+          <button className="register-btn btn-spacing">Submit</button>
         </Link>
       </form>
-      <Link to="/login">Login</Link>
+      <Link className="register-btn" to="/login">Already have an account?</Link>
     </Fragment>
   );
 };

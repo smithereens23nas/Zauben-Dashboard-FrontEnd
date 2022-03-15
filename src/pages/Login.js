@@ -45,7 +45,7 @@ const Login = ({setAuth}) => {
     return (
     <Fragment>
         <h1 className="text-center my-5">Login</h1>
-        <form onSubmit={onSubmitForm}>
+        <form className='forms' onSubmit={onSubmitForm}>
             <input 
                 type="email" 
                 name="email" 
@@ -62,7 +62,7 @@ const Login = ({setAuth}) => {
                 value={password}
                 onChange={e => onChange(e)}
             />
-            <Link to="/locations"><button className="btn btn-success btn-block">Submit</button></Link>
+            <Link to="/locations"><button className="forms-btn">Submit</button></Link>
         </form>
         <Link to="/register">Register</Link>
     </Fragment>

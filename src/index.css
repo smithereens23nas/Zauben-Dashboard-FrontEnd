@@ -1,34 +1,31 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .chart-container {
   display: flex;
   flex-direction: column;
-justify-content: center;
-align-items: center;
-
+  justify-content: center;
+  align-items: center;
 }
 
 .line-chart {
   margin-top: 100px;
   margin-bottom: 100px;
-  padding-bottom:75px;
+  padding-bottom: 75px;
   padding-left: 50px;
   width: 85vw;
 }
-
-
 
 .nav {
   display: flex;
@@ -46,8 +43,101 @@ align-items: center;
 
 .donut-charts {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  outline: red solid 3px;
+  /* outline: red solid 3px; */
+}
 
+.forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 100px;
+
+  /* outline: red solid 3px; */
+}
+
+.forms input {
+  margin: 10px;
+  width: 200px;
+}
+
+.forms-btn {
+  --borderWidth: 5;
+  --boxShadowDepth: 8;
+  --buttonColor: black;
+  --fontSize: 1;
+  --horizontalPadding: 16;
+  --verticalPadding: 8;
+
+  width: 200px;
+  background: transparent;
+  border: calc(var(--borderWidth) * 1px) solid var(--buttonColor);
+  box-shadow: calc(var(--boxShadowDepth) * 1px) calc(var(--boxShadowDepth) * 1px) 0 #888;
+  color: var(--buttonColor);
+  cursor: pointer;
+  font-size: calc(var(--fontSize) * 1rem);
+  font-weight: bold;
+  outline: transparent;
+  padding: calc(var(--verticalPadding) * 1px) calc(var(--horizontalPadding) * 1px);
+  transition: box-shadow 0.15s ease;
+  text-decoration: none;
+}
+
+forms-btn:hover {
+  box-shadow: calc(var(--boxShadowDepth) / 2 * 1px) calc(var(--boxShadowDepth) / 2 * 1px) 0 #888;
+}
+
+.forms-btn:active {
+  box-shadow: 0 0 0 #888;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+  /* outline: red solid 3px; */
+}
+
+.register input {
+  margin: 10px;
+  width: 200px;
+}
+
+.register-btn {
+  --borderWidth: 5;
+  --boxShadowDepth: 8;
+  --buttonColor: black;
+  --fontSize: 1;
+  --horizontalPadding: 16;
+  --verticalPadding: 8;
+
+  width: 200px;
+  background: transparent;
+  border: calc(var(--borderWidth) * 1px) solid var(--buttonColor);
+  box-shadow: calc(var(--boxShadowDepth) * 1px) calc(var(--boxShadowDepth) * 1px) 0 #888;
+  color: var(--buttonColor);
+  cursor: pointer;
+  font-size: calc(var(--fontSize) * 1rem);
+  font-weight: bold;
+  outline: transparent;
+  padding: calc(var(--verticalPadding) * 1px) calc(var(--horizontalPadding) * 1px);
+  transition: box-shadow 0.15s ease;
+  text-decoration: none;
+}
+
+.register-btn:hover {
+  box-shadow: calc(var(--boxShadowDepth) / 2 * 1px) calc(var(--boxShadowDepth) / 2 * 1px) 0 #888;
+}
+
+.register-btn:active {
+  box-shadow: 0 0 0 #888;
+}
+
+.btn-spacing {
+ margin-bottom: 25px;
 }
