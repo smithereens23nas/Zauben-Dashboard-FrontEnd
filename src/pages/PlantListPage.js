@@ -7,7 +7,7 @@ function Locations(props) {
   //create function to make api call
   const getLocationsData = async () => {
     //make api call and get response
-    const response = await fetch("http://localhost:8080/api/locations");
+    const response = await fetch(props.URL + "plants/");
     // turn response into javascript object
     const data = await response.json();
     // set the projects state to the data
@@ -19,12 +19,10 @@ function Locations(props) {
 
   // define a function that will return the JSX needed once we get the data
   const loaded = () => {
-    return locations.map((location, index) => (
+    return locations.map((plants, index) => (
       <div key={index}>
-        <p>{location.StreetAddress}</p>
-        <p>{location.City}</p>
-        <p>{location.State}</p>
-        <p>{location.ZipCode}</p>
+        <p>{plants.locations}</p>
+
       </div>
     ));
   };

@@ -141,3 +141,18 @@ forms-btn:hover {
 .btn-spacing {
  margin-bottom: 25px;
 }
+
+.locations-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 800px; */
+  
+}
+
+.locations-grid img {
+  width: 200px;
+  height: 200px;
+  
+}

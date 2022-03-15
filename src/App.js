@@ -3,6 +3,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/react-toastify.css"
 import Context from "./Context";
 // import Container from "./components/Container";
 // import Dashboard from "./components/Dashboard";
@@ -12,9 +14,11 @@ import Nav from "./components/NavBar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import PlantListPage from "./pages/PlantListPage";
-import PlantLocationList from "./pages/LocationListPage";
+import CreateLocationPage from "./pages/CreateLocation";
+import LocationListPage from "./pages/LocationListPage";
 import Performance from "./pages/PerformanceShowPage";
 import PerformanceDashboard from "./pages/PerformanceDashboard";
+import EditLocation from "./pages/editLocation"
 // import DoughnutChart from "./components/DonutGraph"
 import {
   Chart,
@@ -27,7 +31,7 @@ import {
 
 function App() {
   const URL = "https://zauben.herokuapp.com/";
-
+  // const URL = "http://localhost:5430/";
   Chart.register(
     ArcElement,
     CategoryScale,
@@ -38,6 +42,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* <ToastContainer /> */}
       <Nav />
       {/* <Context.Provider value={{ userCredentials, setUserCredentials }}> */}
 
@@ -47,10 +52,13 @@ function App() {
         {/* <Route
             path="/locations"
             element={
-              userCredentials ? <PlantLocationList URL={URL} /> : <Login />
+              userCredentials ? <CreateLocationPage URL={URL} /> : <Login />
             }
           /> */}
-        <Route path="/locations" element={<PlantLocationList URL={URL} />} />
+        <Route path="/locations/create" element={<CreateLocationPage URL={URL} />} />
+        <Route path="/locations" element={<LocationListPage URL={URL} />} />
+        <Route path="/locations/edit/:id" element={<EditLocation URL={URL} />} />
+
         <Route path="/plants" element={<PlantListPage URL={URL} />} />
         <Route
           path="/performance"
