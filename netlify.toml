@@ -5,5 +5,5 @@
   [[headers]]
   # Define which paths this specific [[headers]] block will cover.
   for = "/*"
-    [https://zauben.herokuapp.com]
-    Access-Control-Allow-Origin = *
+    ["https://zauben.herokuapp.com"]
+    Access-Control-Allow-Origin = "*"
