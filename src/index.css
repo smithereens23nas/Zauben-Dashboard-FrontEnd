@@ -154,5 +154,43 @@ forms-btn:hover {
 .locations-grid img {
   width: 200px;
   height: 200px;
-  
+
+}
+
+.locations-btn {
+  --borderWidth: 5;
+  --boxShadowDepth: 8;
+  --buttonColor: black;
+  --fontSize: 1;
+  --horizontalPadding: 16;
+  --verticalPadding: 8;
+
+  width: 200px;
+  background: transparent;
+  border: calc(var(--borderWidth) * 1px) solid var(--buttonColor);
+  box-shadow: calc(var(--boxShadowDepth) * 1px) calc(var(--boxShadowDepth) * 1px) 0 #888;
+  color: var(--buttonColor);
+  cursor: pointer;
+  font-size: calc(var(--fontSize) * 1rem);
+  font-weight: bold;
+  outline: transparent;
+  padding: calc(var(--verticalPadding) * 1px) calc(var(--horizontalPadding) * 1px);
+  transition: box-shadow 0.15s ease;
+  text-decoration: none;
+}
+
+.register-btn:hover {
+  box-shadow: calc(var(--boxShadowDepth) / 2 * 1px) calc(var(--boxShadowDepth) / 2 * 1px) 0 #888;
+}
+
+.register-btn:active {
+  box-shadow: 0 0 0 #888;
+}
+
+.line-chart-size canvas{
+  /* outline: red solid 3px; */
+  height: 500px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
 }

@@ -38,10 +38,7 @@ function Performance(props) {
         <p>{data.Soilmoisture_CH3}</p>
         <DoughnutChart />
         <p>{data.Soilmoisture_CH4}</p>
-        <Line />
-        <div>
-           {/* <Line />  */}
-        </div>
+       
         
       </div>
     ));
