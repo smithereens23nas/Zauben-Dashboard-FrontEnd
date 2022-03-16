@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function Locations(props) {
@@ -40,7 +41,9 @@ const handleChange = (event) => {
   setNewLocation({ ...newLocation, [event.target.name]: event.target.value });
 };
 // handle submit function for Create locations
+let navigate = useNavigate();
 const handleSubmit = (event) => {
+    navigate('/locations')
   event.preventDefault();
   createLocation(newLocation);
   setNewLocation({

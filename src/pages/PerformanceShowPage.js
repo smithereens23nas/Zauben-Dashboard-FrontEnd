@@ -9,7 +9,7 @@ const performance = () => {
       <div className='donut-chart'>
       <DoughnutChart />
       </div>
-      <div className='line-chart'>
+      <div className='line-chart-size'>
       <Line />
       </div>
     </div>

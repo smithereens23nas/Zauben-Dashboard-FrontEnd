@@ -37,8 +37,9 @@ function Locations(props) {
         <p>{location.City}</p>
         <p>{location.State}</p>
         <p>{location.ZipCode}</p>
-<Link to="/locations"><button>Update</button></Link>
-<Link to="/locations"><button>Delete</button></Link>
+        
+<button className="locations-btn btn-spacing">Update</button>
+<button className="locations-btn btn-spacing">Delete</button>
       </div>
     ));
   };
